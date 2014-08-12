@@ -7,6 +7,7 @@
 	</head>
 	<body>
 		<script src="js/three.min.js"></script>
+		<script src="js/stats.min.js"></script>
 		<script>
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -20,6 +21,11 @@
 			var cube = new THREE.Mesh(geometry, material);
 			scene.add(cube);
 			
+			var stats = new Stats();
+			stats.domElement.style.position = 'absolute';
+			stats.domElement.style.top = '0px';
+			document.body.appendChild(stats.domElement);
+			
 			camera.position.z = 5;
 			
 			var render = function () {
@@ -29,6 +35,8 @@
 				cube.rotation.y += 0.05;
 				
 				renderer.render(scene, camera);
+				
+				stats.update();
 			};
 			
 			render();
